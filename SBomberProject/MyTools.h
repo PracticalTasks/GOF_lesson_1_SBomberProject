@@ -69,12 +69,12 @@
 			static LoggerSingletone theInstance;
 			return theInstance;
 		}
-		void OpenLogFile(const std::string& FN);
-		void CloseLogFile();
-		std::string GetCurDateTime();
-		void WriteToLog(const std::string& str);
-		void WriteToLog(const std::string& str, int n);
-		void WriteToLog(const std::string& str, double d);
+		void OpenLogFile(const std::string& FN) override;
+		void CloseLogFile()override;
+		std::string GetCurDateTime()override;
+		void WriteToLog(const std::string& str)override;
+		void WriteToLog(const std::string& str, int n)override;
+		void WriteToLog(const std::string& str, double d)override;
 	private: 
 		uint32_t loggerEventNum;
 	private:
@@ -94,12 +94,12 @@
 			static FileLoggerSingletone theInstance;
 			return theInstance;
 		}
-		void OpenLogFile(const std::string& FN);
-		void CloseLogFile();
-		std::string GetCurDateTime();
-		void WriteToLog(const std::string& str);
-		void WriteToLog(const std::string& str, int n);
-		void WriteToLog(const std::string& str, double d);
+		void OpenLogFile(const std::string& FN)override;
+		void CloseLogFile()override;
+		std::string GetCurDateTime()override;
+		void WriteToLog(const std::string& str)override;
+		void WriteToLog(const std::string& str, int n)override;
+		void WriteToLog(const std::string& str, double d)override;
 
 	private:
 		FileLoggerSingletone() {}
