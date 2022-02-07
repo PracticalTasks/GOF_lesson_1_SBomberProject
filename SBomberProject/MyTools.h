@@ -2,7 +2,6 @@
 
 #include <stdint.h>
 #include <string>
-#include <fstream>
 
 	// Палитра цветов от 0 до 15
 	enum ConsoleColor
@@ -45,8 +44,6 @@
 		ScreenSingleton(const ScreenSingleton& root) = delete;
 		ScreenSingleton& operator=(const ScreenSingleton&) = delete;
 	};
-
-
 
 	//=============================================================================================
 
@@ -108,5 +105,6 @@
 		FileLoggerSingletone() {}
 		FileLoggerSingletone(const FileLoggerSingletone& root) = delete;
 		const FileLoggerSingletone& operator=(const FileLoggerSingletone&) = delete;
-		//=============================================================================================
 	};
+
+	//=============================================================================================
