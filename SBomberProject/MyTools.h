@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <string>
+#include <fstream>
 
 	// Палитра цветов от 0 до 15
 	enum ConsoleColor
@@ -59,39 +60,13 @@
 		
 	};
 
-//Proxy
-	class LoggerSingletone : public LoggerInterface
+	//Singletone
+	class FileLoggerSingleton : public LoggerInterface
 	{
 	public:
-		
-		static LoggerSingletone& getInstance()
+		static FileLoggerSingleton& getInstance()
 		{
-			static LoggerSingletone theInstance;
-			return theInstance;
-		}
-		void OpenLogFile(const std::string& FN) override;
-		void CloseLogFile()override;
-		std::string GetCurDateTime()override;
-		void WriteToLog(const std::string& str)override;
-		void WriteToLog(const std::string& str, int n)override;
-		void WriteToLog(const std::string& str, double d)override;
-	private: 
-		uint32_t loggerEventNum;
-	private:
-		LoggerSingletone():loggerEventNum(1){}
-		LoggerSingletone(const LoggerSingletone& root) = delete;
-		const LoggerSingletone& operator=(const LoggerSingletone&) = delete;
-	};
-
-//Singletone
-	class FileLoggerSingletone : public LoggerInterface
-	{
-	public:
-		
-
-		static FileLoggerSingletone& getInstance()
-		{
-			static FileLoggerSingletone theInstance;
+			static FileLoggerSingleton theInstance;
 			return theInstance;
 		}
 		void OpenLogFile(const std::string& FN)override;
@@ -102,9 +77,34 @@
 		void WriteToLog(const std::string& str, double d)override;
 
 	private:
-		FileLoggerSingletone() {}
-		FileLoggerSingletone(const FileLoggerSingletone& root) = delete;
-		const FileLoggerSingletone& operator=(const FileLoggerSingletone&) = delete;
+		std::ofstream logOut;
+
+		FileLoggerSingleton(){}
+		FileLoggerSingleton(const FileLoggerSingleton& root) = delete;
+		const FileLoggerSingleton& operator=(const FileLoggerSingleton&) = delete;
+	};
+
+//Proxy
+	class LoggerSingleton : public LoggerInterface
+	{
+	public:
+		static LoggerSingleton& getInstance()
+		{
+			static LoggerSingleton theInstance;
+			return theInstance;
+		}
+		void OpenLogFile(const std::string& FN) override;
+		void CloseLogFile()override;
+		std::string GetCurDateTime()override;
+		void WriteToLog(const std::string& str)override;
+		void WriteToLog(const std::string& str, int n)override;
+		void WriteToLog(const std::string& str, double d)override;
+	private: 
+		uint32_t loggerEventNum;
+
+		LoggerSingleton() :loggerEventNum(1) {}
+		LoggerSingleton(const LoggerSingleton& root) = delete;
+		const LoggerSingleton& operator=(const LoggerSingleton&) = delete;
 	};
 
 	//=============================================================================================

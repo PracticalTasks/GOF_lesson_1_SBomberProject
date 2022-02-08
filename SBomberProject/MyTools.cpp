@@ -15,7 +15,7 @@
 using namespace std;
 
 
-    ofstream logOut;
+    //ofstream logOut;
 	
     //=============================================================================================
 
@@ -70,60 +70,45 @@ using namespace std;
     //=============================================================================================
 	
 	//Proxy
-	void LoggerSingletone::OpenLogFile(const string& FN)
+	void LoggerSingleton::OpenLogFile(const string& FN)
 	{
-		FileLoggerSingletone::getInstance().OpenLogFile(FN);
+		FileLoggerSingleton::getInstance().OpenLogFile(FN);
 	}
 
-	void LoggerSingletone::CloseLogFile()
+	void LoggerSingleton::CloseLogFile()
 	{
-		FileLoggerSingletone::getInstance().CloseLogFile();
+		FileLoggerSingleton::getInstance().CloseLogFile();
 	}
 
-	string LoggerSingletone::GetCurDateTime()
+	string LoggerSingleton::GetCurDateTime()
 	{
-		return FileLoggerSingletone::getInstance().GetCurDateTime();
+		return FileLoggerSingleton::getInstance().GetCurDateTime();
 	}
 
-	void LoggerSingletone::WriteToLog(const string& str)
+	void LoggerSingleton::WriteToLog(const string& str)
 	{
-		
-		if (logOut.is_open())
-		{
-			logOut << loggerEventNum<<' ';
-			FileLoggerSingletone::getInstance().WriteToLog(str);
-			++loggerEventNum;
-		}
+		FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str);
 	}
 
-	void LoggerSingletone::WriteToLog(const string& str, int n)
+	void LoggerSingleton::WriteToLog(const string& str, int n)
 	{
-		if (logOut.is_open())
-		{
-			logOut << loggerEventNum << ' ';
-			FileLoggerSingletone::getInstance().WriteToLog(str, n);
-			++loggerEventNum;
-		}
+			FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str, n);
 	}
 
-	void LoggerSingletone::WriteToLog(const string& str, double d)
+	void LoggerSingleton::WriteToLog(const string& str, double d)
 	{
-		if (logOut.is_open())
-		{
-			logOut << loggerEventNum << ' ';
-			FileLoggerSingletone::getInstance().WriteToLog(str, d);
-			++loggerEventNum;
-		}
+			FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str, d);
 	}
+
 
 	//Singletone
-    void FileLoggerSingletone::OpenLogFile(const string& FN)
+    void FileLoggerSingleton::OpenLogFile(const string& FN)
     {
         logOut.open(FN, ios_base::out);
     }
 
 
-    void FileLoggerSingletone::CloseLogFile()
+    void FileLoggerSingleton::CloseLogFile()
     {
         if (logOut.is_open())
         {
@@ -131,7 +116,7 @@ using namespace std;
         }
     }
 
-	string FileLoggerSingletone::GetCurDateTime()
+	string FileLoggerSingleton::GetCurDateTime()
 	{
 		auto cur = std::chrono::system_clock::now();
 		time_t time = std::chrono::system_clock::to_time_t(cur);
@@ -141,7 +126,7 @@ using namespace std;
 		return string(buf);
 	}
 
-    void FileLoggerSingletone::WriteToLog(const string& str)
+    void FileLoggerSingleton::WriteToLog(const string& str)
     {
         if (logOut.is_open())
         {
@@ -149,7 +134,7 @@ using namespace std;
         }
     }
 
-    void FileLoggerSingletone::WriteToLog(const string& str, int n)
+    void FileLoggerSingleton::WriteToLog(const string& str, int n)
     {
         if (logOut.is_open())
         {
@@ -157,7 +142,7 @@ using namespace std;
         }
     }
 
-    void FileLoggerSingletone::WriteToLog(const string& str, double d)
+    void FileLoggerSingleton::WriteToLog(const string& str, double d)
     {
         if (logOut.is_open())
         {
