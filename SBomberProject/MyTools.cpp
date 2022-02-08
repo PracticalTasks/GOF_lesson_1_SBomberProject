@@ -70,32 +70,32 @@ using namespace std;
     //=============================================================================================
 	
 	//Proxy
-	void LoggerSingleton::OpenLogFile(const string& FN)
+	void LoggerProxy::OpenLogFile(const string& FN)
 	{
 		FileLoggerSingleton::getInstance().OpenLogFile(FN);
 	}
 
-	void LoggerSingleton::CloseLogFile()
+	void LoggerProxy::CloseLogFile()
 	{
 		FileLoggerSingleton::getInstance().CloseLogFile();
 	}
 
-	string LoggerSingleton::GetCurDateTime()
+	string LoggerProxy::GetCurDateTime()
 	{
 		return FileLoggerSingleton::getInstance().GetCurDateTime();
 	}
 
-	void LoggerSingleton::WriteToLog(const string& str)
+	void LoggerProxy::WriteToLog(const string& str)
 	{
 		FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str);
 	}
 
-	void LoggerSingleton::WriteToLog(const string& str, int n)
+	void LoggerProxy::WriteToLog(const string& str, int n)
 	{
 			FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str, n);
 	}
 
-	void LoggerSingleton::WriteToLog(const string& str, double d)
+	void LoggerProxy::WriteToLog(const string& str, double d)
 	{
 			FileLoggerSingleton::getInstance().WriteToLog(to_string(loggerEventNum++) + ' ' + str, d);
 	}

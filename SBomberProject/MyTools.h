@@ -85,12 +85,12 @@
 	};
 
 //Proxy
-	class LoggerSingleton : public LoggerInterface
+	class LoggerProxy : public LoggerInterface
 	{
 	public:
-		static LoggerSingleton& getInstance()
+		static LoggerProxy& getInstance()
 		{
-			static LoggerSingleton theInstance;
+			static LoggerProxy theInstance;
 			return theInstance;
 		}
 		void OpenLogFile(const std::string& FN) override;
@@ -102,9 +102,9 @@
 	private: 
 		uint32_t loggerEventNum;
 
-		LoggerSingleton() :loggerEventNum(1) {}
-		LoggerSingleton(const LoggerSingleton& root) = delete;
-		const LoggerSingleton& operator=(const LoggerSingleton&) = delete;
+		LoggerProxy() :loggerEventNum(1) {}
+		LoggerProxy(const LoggerProxy& root) = delete;
+		const LoggerProxy& operator=(const LoggerProxy&) = delete;
 	};
 
 	//=============================================================================================

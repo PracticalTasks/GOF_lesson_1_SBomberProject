@@ -10,7 +10,7 @@ using namespace std;
 
 int main(void)
 {
-    LoggerSingleton::getInstance().OpenLogFile("log.txt");
+    LoggerProxy::getInstance().OpenLogFile("log.txt");
 
     SBomber game;
 
@@ -32,7 +32,7 @@ int main(void)
 
     } while (!game.GetExitFlag());
 
-    LoggerSingleton::getInstance().CloseLogFile();
+    LoggerProxy::getInstance().CloseLogFile();
 
     return 0;
 }
